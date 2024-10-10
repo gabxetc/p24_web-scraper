@@ -10,7 +10,21 @@ const express = require('express')
 // Initialising express by calling it and all it's packages and storing it in app
 const app = express()
 
-const url = 'https://www.property24.com/to-rent/montgomery-park/johannesburg/gauteng/5780'
+const url = 'https://www.property24.com/to-rent/montgomery-park/johannesburg/gauteng/5780' // Montgomery Park
+// const url = 'https://www.property24.com/to-rent/northcliff/randburg/gauteng/5783' // Northcliff
+
+// const inquirer = require('inquirer');
+
+// const questions = [
+//   {
+//     type: 'input',
+//     name: 'url',
+//     message: "Please enter a Property24 Url",
+//   },
+// ];
+
+// inquirer.prompt(questions).then(url => {
+// });
 
 axios(url) // Chaining. Returns a promise THEN we get the reponse of whatevers come back.
     .then(response => {
