@@ -1,0 +1,108 @@
+<!-- HTML Entities: https://www.freeformatter.com/html-entities.html#ascii-characters -->
+
+<!-- Just declares that it is HTML | TO get the boilerplate type ! tab-->
+<!DOCTYPE html>
+
+<!-- This tag tells the code that everything in the html tag is html -->
+<html lang="en">
+  <!-- The head tag is where we load CSS and Javascript files. It contains info about the website -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Other meta functions include keywords which are topics associated with the web page -->
+    <!-- and description which is the description you see when you search a site -->
+    <title>Property 24 WebScraper</title>
+    <style>
+      h1 {
+        padding-bottom: 20px;
+      }
+      img {
+        width: 150px;
+        border-radius: 10px;
+        float: left;
+        margin-right: 20px;
+        margin-top: 20px;
+      }
+      .username {
+        font-weight: bold;
+      }
+      .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px
+      }
+    </style>
+  </head>
+  <!-- This is the main content of the webpage. Everything we see on the page will usually be in the body tag -->
+  <body>
+    <div class = "center">
+    <h1>A Property 24 Web Scraper!</h1>
+    <a
+      href="https://www.property24.com/to-rent?gad_source=1&gclid=CjwKCAjwvKi4BhABEiwAH2gcw-ahW4yLv_3qZ9NfQYEKfuyz9l1n7u2FrdUn7-bs2XdbkN0MVeShoxoCAr4QAvD_BwE"
+      target="”_blank”"
+      >Go to the Property 24 website to generate a link</a
+    >
+    <img src="/images/p24.png" alt="An image of Property 24 logo" />
+    <p>1. Insert your name so I know who you are!</p>
+    <p>2. Insert a link to begin web scraping</p>
+    <form id="form">
+      <table>
+        <tr>
+          <td>Name:</td>
+          <td><input type="text" link="" id="name" required/></td>
+          </td>
+        </tr>
+        <tr>
+          <td>Link:</td>
+          <td><input type="text" value="" id="p24_link" required/></td>
+        </tr>
+        <tr>
+          <td><input type="submit" value="Submit"></td>
+        </tr>
+      </table>
+    </form>
+    </div>
+    <script>
+      const form = document.getElementById('form');
+      const firstName = document.getElementById('name');
+      const p24_link = document.getElementById('p24_link');
+      
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const username = firstName.value;
+        const onlyLink = p24_link.value;
+
+        localStorage.setItem('user-name', username);
+        localStorage.setItem('p24-link', onlyLink);
+
+        window.location.href = "next.html";
+      })
+
+      document.getElementById("p24-link").addEventListener("submit", (event) => {
+            event.preventDefault(); // Prevent form refresh
+            
+            // Get the input value
+            const p24Link = document.getElementById("p24-link").value;
+
+            // Send the p24Link to the server
+            fetch('http://localhost:5500/scrape', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ url: p24Link }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Scraped Data:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+          });
+    </script>
+  </body>
+</html>

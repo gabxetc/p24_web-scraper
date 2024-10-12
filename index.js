@@ -3,28 +3,31 @@ const PORT = 8000
 
 // Getting the package and storing it in these variable names
 
-const axios = require('axios')
-const cheerio = require('cheerio')
-const express = require('express')
+const axios = require('axios');
+const cheerio = require('cheerio');
+const express = require('express');
+const fs = require('fs');
+const cors = require('cors');
 
-// Initialising express by calling it and all it's packages and storing it in app
-const app = express()
 
-const url = 'https://www.property24.com/to-rent/montgomery-park/johannesburg/gauteng/5780' // Montgomery Park
-// const url = 'https://www.property24.com/to-rent/northcliff/randburg/gauteng/5783' // Northcliff
+let writeCounter = 0; // Counter to track number of writes
+const maxWrites = 2; // Write limit
+const shutdownDelay = 500;
+let server;
 
-// const inquirer = require('inquirer');
+const app = express(); // Initialising express by calling it and all it's packages and storing it in app
 
-// const questions = [
-//   {
-//     type: 'input',
-//     name: 'url',
-//     message: "Please enter a Property24 Url",
-//   },
-// ];
+app.use(express.json());
+app.use(cors()); // Allows all origins
 
-// inquirer.prompt(questions).then(url => {
-// });
+// app.post('/scrape', (req, res) => {
+//     const { url } = req.body;
+
+//     if (!url) {
+//         return res.status(400).json({ error: 'No URL provided' });
+//     }
+
+const url = 'https://www.property24.com/to-rent/northcliff/randburg/gauteng/5783' // Northcliff
 
 axios(url) // Chaining. Returns a promise THEN we get the reponse of whatevers come back.
     .then(response => {
@@ -32,15 +35,13 @@ axios(url) // Chaining. Returns a promise THEN we get the reponse of whatevers c
         const $ = cheerio.load(html)
         const properties = []
         
-        //<div class="p24_regularTile js_rollover_container js_resultTileClickable   p24_tileHoverWrapper" itemscope itemtype="http://schema.org/Product" data-listing-number="114932369">
-        // <span class="p24_price" itemprop="price" content="17000">…</span>
         $('.p24_content', html).each(function() {
         const link = $(this).attr('href')
         const rooms = $(this).find('span.p24_title').text()
         const size = $(this).find('.p24_size').text().trim()
         const price = $(this).find('.p24_price').text().trim()
         const location = $(this).find('.p24_location').text()
-        const date_scraped = new Date().toISOString()
+        const dateScraped = new Date().toISOString()
 
         properties.push({ // javascript method push to push items into the array
             link,
@@ -48,12 +49,45 @@ axios(url) // Chaining. Returns a promise THEN we get the reponse of whatevers c
             size,
             price,
             location,
-            date_scraped
-        })
-    }) 
+            dateScraped
+        });
+    });
+
     console.log(properties)
 
-    }).catch(err => console.log(err))
+    if (properties.length === 0) {
+        console.log('No properties found.');
+        // return res.status(404).send('No properties found');
+    }
 
-app.listen(PORT, () => console.log('server running on PORT ${PORT}'))
+    fs.writeFile('properties.json', JSON.stringify(properties, null, 2), (err) => {
+        if (err) {
+            console.log('Error writing to file:', err);
+            // return res.status(500).send('Error writing to file');
+        } else {
+            console.log('JSON data saved to properties.json');
+            writeCounter++;
 
+            // Shut down the server after a specified delay if the write counter reaches maxWrites
+            if (writeCounter >= maxWrites) {
+                console.log('Max writes reached. Shutting down server after delay...');
+                setTimeout(() => {
+                    server.close(() => {
+                        console.log('Server closed.');
+                        process.exit(0); // Exit the process
+                    });
+                }, shutdownDelay); // Delay before shutting down the server
+            }
+            // return res.json(properties); // Send response back to client
+        }
+    });
+})
+.catch(err => {
+    console.error('Error fetching the page:', err);
+    res.status(500).send('Error scraping the page');
+});
+// });
+
+server = app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

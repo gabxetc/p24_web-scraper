@@ -6,13 +6,27 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
+  "nodemonConfig": {
+    "watch": [
+      "index.js"
+    ],
+    "ignore": [
+      "node_modules/*",
+      "properties.json",
+      "index.js"
+    ],
+    "exec": "node index.js"
+  },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@moebius/http-graceful-shutdown": "^1.1.0",
     "axios": "^1.7.7",
     "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
     "express": "^4.21.1",
+    "express-end": "^0.0.8",
     "inquirer": "^12.0.0",
     "nodemon": "^3.1.7"
   }

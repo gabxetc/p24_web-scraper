@@ -15,3 +15,5 @@ How to use the software.
 9. Enjoy!
 
 NOTE: This programe only returns data loaded on one page. To receive data from multiple pages. You will have you enter the link from the new page
+
+I used the following youtube video for guidance: https://www.youtube.com/watch?v=-3lqUHeZs_0&t=1202s
