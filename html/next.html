@@ -16,20 +16,21 @@
   <body>
     <h1>Data from web scraper</h1>
     <p>
-      Hello <span class="name" id="user-name"></span>! These are the results
+      Hello <span class="name" id="name"></span>! These are the results
       from your webscrape.
     </p>
-    <p>This is the link you used: <span class="link" id="p24-link"></span></p>
+    <p>This is the link you used: <span class="link" id="p24_link"></span></p>
+    <hr>
     <div id="dataDisplay">
       <!-- JSON data will be displayed here -->
     </div>
     <script>
-      const userName = localStorage.getItem("user-name");
-      const p24Link = localStorage.getItem("p24-link");
+      const userName = localStorage.getItem("name");
+      const p24Link = localStorage.getItem("p24_link");
 
-      document.getElementById("user-name").textContent = userName;
-      document.getElementById("p24-link").textContent = p24Link;
+      document.getElementById("name").textContent = userName;
+      document.getElementById("p24_link").textContent = p24Link;
     </script>
-    <script src="script.js"></script>
+    <script src="html/javascript/script.js"></script>
   </body>
 </html>

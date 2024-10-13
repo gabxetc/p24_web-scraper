@@ -11,8 +11,8 @@ const cors = require('cors');
 
 
 let writeCounter = 0; // Counter to track number of writes
-const maxWrites = 2; // Write limit
-const shutdownDelay = 500;
+const maxWrites = 1; // Write limit
+const shutdownDelay = 1000;
 let server;
 
 const app = express(); // Initialising express by calling it and all it's packages and storing it in app
@@ -20,14 +20,15 @@ const app = express(); // Initialising express by calling it and all it's packag
 app.use(express.json());
 app.use(cors()); // Allows all origins
 
-// app.post('/scrape', (req, res) => {
-//     const { url } = req.body;
+app.post('/scrape', (req, res) => {
+    const { url } = req.body;
 
-//     if (!url) {
-//         return res.status(400).json({ error: 'No URL provided' });
-//     }
+    if (!url) {
+        return res.status(400).json({ error: 'No URL provided' });
+    }
 
-const url = 'https://www.property24.com/to-rent/northcliff/randburg/gauteng/5783' // Northcliff
+// const url = 'https://www.property24.com/to-rent/montgomery-park/johannesburg/gauteng/5780' // Northcliff
+console.log(url);
 
 axios(url) // Chaining. Returns a promise THEN we get the reponse of whatevers come back.
     .then(response => {
@@ -36,7 +37,8 @@ axios(url) // Chaining. Returns a promise THEN we get the reponse of whatevers c
         const properties = []
         
         $('.p24_content', html).each(function() {
-        const link = $(this).attr('href')
+            const relativeLink = $(this).attr('href');
+            const link = `https://www.property24.com${relativeLink}`;
         const rooms = $(this).find('span.p24_title').text()
         const size = $(this).find('.p24_size').text().trim()
         const price = $(this).find('.p24_price').text().trim()
@@ -55,15 +57,10 @@ axios(url) // Chaining. Returns a promise THEN we get the reponse of whatevers c
 
     console.log(properties)
 
-    if (properties.length === 0) {
-        console.log('No properties found.');
-        // return res.status(404).send('No properties found');
-    }
-
-    fs.writeFile('properties.json', JSON.stringify(properties, null, 2), (err) => {
+    fs.writeFile('html/properties.json', JSON.stringify(properties, null, 2), (err) => {
         if (err) {
             console.log('Error writing to file:', err);
-            // return res.status(500).send('Error writing to file');
+            return res.status(500).send('Error writing to file');
         } else {
             console.log('JSON data saved to properties.json');
             writeCounter++;
@@ -78,7 +75,7 @@ axios(url) // Chaining. Returns a promise THEN we get the reponse of whatevers c
                     });
                 }, shutdownDelay); // Delay before shutting down the server
             }
-            // return res.json(properties); // Send response back to client
+            return res.json(properties); // Send response back to client
         }
     });
 })
@@ -86,7 +83,7 @@ axios(url) // Chaining. Returns a promise THEN we get the reponse of whatevers c
     console.error('Error fetching the page:', err);
     res.status(500).send('Error scraping the page');
 });
-// });
+});
 
 server = app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

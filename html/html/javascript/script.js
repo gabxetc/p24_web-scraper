@@ -1,10 +1,15 @@
 // Set user information (Assuming stored in localStorage previously)
 document.addEventListener("DOMContentLoaded", function () {
-    const userName = localStorage.getItem("user-name");
-    const p24Link = localStorage.getItem("p24-link");
-  
-    document.getElementById("user-name").textContent = userName;
-    document.getElementById("p24-link").textContent = p24Link;
+    const userName = localStorage.getItem("name");
+    const p24Link = localStorage.getItem("p24_link");
+    
+    const dataDisplay = document.getElementById("dataDisplay");
+    dataDisplay.textContent = "JavaScript is connected!";
+
+    document.getElementById("name").textContent = userName;
+    document.getElementById("p24_link").textContent = p24Link;
+
+    console.log("JavaScript is connected");
   
     // Fetch JSON data from the properties.json file
     fetch("properties.json")
@@ -15,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return response.json();
       })
       .then((data) => {
+        console.log('Fetched data:', data);
         const dataDisplay = document.getElementById("dataDisplay");
   
         // Loop through the array and display each property
@@ -22,8 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
           const propertyDiv = document.createElement("div");
           propertyDiv.classList.add("property");
   
-          const linkElement = document.createElement("p");
-          linkElement.textContent = "Link: " + property.link;
+          // const linkElement = document.createElement("p");
+          // linkElement.textContent = "Link: " + property.link;
+          
+          const linkElement = document.createElement("a");
+          linkElement.href = property.link; // Set the href to the property link
+          linkElement.textContent = property.link; // Set the text content for the link
+          linkElement.target = "_blank"; 
   
           const roomsElement = document.createElement("p");
           roomsElement.textContent = "Rooms: " + property.rooms;

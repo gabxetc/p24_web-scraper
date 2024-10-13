@@ -13,7 +13,11 @@
     "ignore": [
       "node_modules/*",
       "properties.json",
-      "index.js"
+      "html/html/javascript/script.js",
+      "html/html/javascript/test.js",
+      "html/base.html",
+      "html/next.html",
+      "*.log"  
     ],
     "exec": "node index.js"
   },

@@ -47,7 +47,7 @@
     <img src="/images/p24.png" alt="An image of Property 24 logo" />
     <p>1. Insert your name so I know who you are!</p>
     <p>2. Insert a link to begin web scraping</p>
-    <form id="form">
+    <form id="form" action="/scrape" method="post">
       <table>
         <tr>
           <td>Name:</td>
@@ -56,7 +56,7 @@
         </tr>
         <tr>
           <td>Link:</td>
-          <td><input type="text" value="" id="p24_link" required/></td>
+          <td><input type="text" value="" id="p24_link" name="url" required/></td>
         </tr>
         <tr>
           <td><input type="submit" value="Submit"></td>
@@ -75,20 +75,20 @@
         const username = firstName.value;
         const onlyLink = p24_link.value;
 
-        localStorage.setItem('user-name', username);
-        localStorage.setItem('p24-link', onlyLink);
+        localStorage.setItem('name', username);
+        localStorage.setItem('p24_link', onlyLink);
 
         window.location.href = "next.html";
       })
 
-      document.getElementById("p24-link").addEventListener("submit", (event) => {
+      document.getElementById("form").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent form refresh
             
             // Get the input value
-            const p24Link = document.getElementById("p24-link").value;
+            const p24Link = document.getElementById("p24_link").value;
 
             // Send the p24Link to the server
-            fetch('http://localhost:5500/scrape', {
+            fetch('http://localhost:8000/scrape', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
