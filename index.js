@@ -90,7 +90,12 @@ axios(url) // Chaining: Returns a promise THEN we get the reponse of whatevers c
 });
 
     console.log(properties)
-
+    properties.sort((a, b) => {
+        const priceA = parseInt(a.price.replace(/[^\d]/g, ''), 10); // Remove non-numeric characters
+        const priceB = parseInt(b.price.replace(/[^\d]/g, ''), 10);
+        return priceA - priceB; // Sort in ascending order
+    });
+    
     // Writing of a Js objection into JSON format into the file
     fs.writeFile('html/properties.json', JSON.stringify(properties, null, 2), (err) => {
         if (err) {
