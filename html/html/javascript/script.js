@@ -1,13 +1,8 @@
 // Set user information (Assuming stored in localStorage previously)
 document.addEventListener("DOMContentLoaded", function () {
-    const userName = localStorage.getItem("name");
-    const p24Link = localStorage.getItem("p24_link");
     
     const dataDisplay = document.getElementById("dataDisplay");
     dataDisplay.textContent = "JavaScript is connected!";
-
-    document.getElementById("name").textContent = userName;
-    document.getElementById("p24_link").textContent = p24Link;
 
     console.log("JavaScript is connected");
   
@@ -21,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .then((data) => {
         console.log('Fetched data:', data);
-        const dataDisplay = document.getElementById("dataDisplay");
   
         // Loop through the array and display each property
         data.forEach((property) => {
@@ -32,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // linkElement.textContent = "Link: " + property.link;
           
           const linkElement = document.createElement("a");
-          linkElement.href = property.link; // Set the href to the property link
+          linkElement.href = property.link; // Set the href to the property iter, link
           linkElement.textContent = property.link; // Set the text content for the link
           linkElement.target = "_blank"; 
   
