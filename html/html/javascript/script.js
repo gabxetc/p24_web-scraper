@@ -2,9 +2,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     
     const dataDisplay = document.getElementById("dataDisplay");
-    dataDisplay.textContent = "JavaScript is connected!";
+    // dataDisplay.textContent = "JavaScript is connected!";
 
-    console.log("JavaScript is connected");
+    // console.log("JavaScript is connected");
   
     // Fetch JSON data from the properties.json file
     fetch("properties.json")
@@ -22,30 +22,32 @@ document.addEventListener("DOMContentLoaded", function () {
           const propertyDiv = document.createElement("div");
           propertyDiv.classList.add("property");
   
-          // const linkElement = document.createElement("p");
-          // linkElement.textContent = "Link: " + property.link;
-          
+          // const imageElement = document.createElement("img");
+          // imageElement.src = (property.image !== '' ? property.image : "No image available.");
+  
           const linkElement = document.createElement("a");
           linkElement.href = property.link; // Set the href to the property iter, link
-          linkElement.textContent = property.link; // Set the text content for the link
+          linkElement.textContent = property.link !== '' ? property.link : "No link available."; // Set the text content for the link
           linkElement.target = "_blank"; 
   
           const roomsElement = document.createElement("p");
-          roomsElement.textContent = "Rooms: " + property.rooms;
+          roomsElement.textContent = "Rooms: " + (property.rooms !== '' ? property.rooms : "No rooms available.");
   
           const sizeElement = document.createElement("p");
-          sizeElement.textContent = "Size: " + property.size;
+          console.log(sizeElement);
+          sizeElement.textContent = "Size: " + (property.size !== '' ? property.size : "No sizes available.");
   
           const priceElement = document.createElement("p");
-          priceElement.textContent = "Price: " + property.price;
+          priceElement.textContent = "Price: " + (property.price !== '' ? property.price : "No price available.");
   
           const locationElement = document.createElement("p");
-          locationElement.textContent = "Location: " + property.location;
+          locationElement.textContent = "Location: " + (property.location !== '' ? property.location : "No location available.");
   
           const dateScrapedElement = document.createElement("p");
           dateScrapedElement.textContent = "Date Scraped: " + property.dateScraped;
   
           // Append all elements to the propertyDiv
+          // propertyDiv.appendChild(imageElement);
           propertyDiv.appendChild(linkElement);
           propertyDiv.appendChild(roomsElement);
           propertyDiv.appendChild(sizeElement);

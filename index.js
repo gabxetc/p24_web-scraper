@@ -30,18 +30,19 @@ app.post('/scrape', (req, res) => { // Extracting the url from the /scrape endpo
 
 console.log(url);
 
+
 axios(url) // Chaining: Returns a promise THEN we get the reponse of whatevers come back.
     .then(response => {
         const html = response.data // We get the response data and save it as HTML
         const $ = cheerio.load(html)
-        const properties = []
+        const properties = [];
         
-        $('.p24_tileContainer', html).each(function() {
-            const isSponsored = $(this).find('.p24_sponsored').text().trim();
-            
+        $('.p24_tileContainer', html).each(function() {            
+            const isSponsored = $(this).find('.p24_sponsored').length > 0;
         if (isSponsored){
             // console.log('Has sponsored class:', isSponsored);
             // const previousAnchor = $(this).closest('div').attr('href');  
+            // const image = $(this).find('.p24_promotedImage').attr('src');
             const relativeLink = $(this).find('a').attr('href');
             const link = `https://www.property24.com${relativeLink}`;
             const rooms = $(this).find('div.p24_description').text().trim();
@@ -49,7 +50,10 @@ axios(url) // Chaining: Returns a promise THEN we get the reponse of whatevers c
             const price = $(this).find('.p24_price').text().trim();
             const location = $(this).find('.p24_location').text();
             const dateScraped = new Date().toISOString();
+            const isDuplicate = properties.some(item => item.link === link);
+            if (!isDuplicate) {
             properties.push({ // javascript method push to push items into the array
+                // image,
                 link,
                 rooms,
                 size,
@@ -58,17 +62,22 @@ axios(url) // Chaining: Returns a promise THEN we get the reponse of whatevers c
                 dateScraped
             });
         }
-            else if (!isSponsored) {
+    }
+            else {
             // console.log('No sponsored class');
-        const relativeLink = $(this).find('a').attr('href');
-        const link = `https://www.property24.com${relativeLink}`;
-        const rooms = $(this).find('span.p24_title').text();
-        const size = $(this).find('.p24_size').text().trim();
-        const price = $(this).find('.p24_price').text().trim();
-        const location = $(this).find('.p24_location').text();
-        const dateScraped = new Date().toISOString();
-
+            // const image = $(this).find('.js_P24_listingImage').attr('src');
+            const relativeLink = $(this).find('a').attr('href');
+            const link = `https://www.property24.com${relativeLink}`;
+            const rooms = $(this).find('span.p24_title').text();
+            const size = $(this).find('.p24_size').text().trim();
+            const price = $(this).find('.p24_price').text().trim();
+            const location = $(this).find('.p24_location').text();
+            const dateScraped = new Date().toISOString();
+            
+            const isDuplicate = properties.some(item => item.link === link);
+            if (!isDuplicate) {
         properties.push({ // javascript method push to push items into the array
+            // image,
             link,
             rooms,
             size,
@@ -77,6 +86,7 @@ axios(url) // Chaining: Returns a promise THEN we get the reponse of whatevers c
             dateScraped
         });
     }
+}
 });
 
     console.log(properties)

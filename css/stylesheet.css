@@ -1,0 +1,89 @@
+* {
+    margin: 0px;
+}
+
+header {
+    background-color: #333; /* Change this color as needed */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 50px;
+}
+
+/* These are the styles for the text */
+.p24_info {
+    text-align: center;
+    margin: 50px;
+}
+
+.row {
+    margin-top: 30px;
+    padding: 30px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    display: flex;
+    
+}
+
+.p24_img {
+    padding-left: 100px;
+}
+
+.p24_questions {
+
+}
+
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+h1 {
+    padding-bottom: 20px;
+  }
+img {
+    width: 150px;
+    border-radius: 10px;
+    float: left;
+    margin-right: 20px;
+    margin-top: 20px;
+  }
+.username {
+    font-weight: bold;
+  }
+
+.name {
+    font-weight: bold;
+  }
+.link {
+    font-weight: bold;
+  }
