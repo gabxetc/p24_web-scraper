@@ -12,33 +12,46 @@
     <!-- Other meta functions include keywords which are topics associated with the web page -->
     <!-- and description which is the description you see when you search a site -->
     <title>Property 24 WebScraper</title>
-    <style>
-      h1 {
-        padding-bottom: 20px;
-      }
-      img {
-        width: 150px;
-        border-radius: 10px;
-        float: left;
-        margin-right: 20px;
-        margin-top: 20px;
-      }
-      .username {
-        font-weight: bold;
-      }
-      .center {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 10px
-      }
-    </style>
+    <link rel="stylesheet" href="/css/stylesheet.css">
   </head>
   <!-- This is the main content of the webpage. Everything we see on the page will usually be in the body tag -->
   <body>
+    <header>
+      <h1>Welcome to my page!</h1>
+    </header>
+    <div class="info">
+      <br>
+      <div class="greeting">
+        <h1>Instructions</h1>
+        <p>How to use the software.</p>
+      </div>
+      <br>
+      <ol><p>Step 1:</p>
+        <li>In VS Code, open the terminal.</li>
+        <li>Run the following command: node index.js in the terminal to run the server.</li>
+        <li>Once your server is running. Go to base.html, right click anywhere on the script and "Open with live server".</li>
+        <p>OR</p>
+        <li>Go into file explorer and open base.html with Google Chrome by right clicking on it and saying "Open with".</li>
+        <li>By now your server should be live and you should have a webpage open with a property 24 logo on it.</li>
+      </ol>
+      <br>
+      <ol><p>Step 2:</p>
+        <li>In a new tab, google property 24 and go onto Property24's website.</li>
+        <li>In the search bar of the Property 24's website, enter the location/area you would like to have scrapped for information.</li>
+        <li>Click on the search icon once you are satisfied with the area you would like scraped</li>
+        <li>Once the webpage has loaded with the area of interest. Copy the url of the webpage with the filtered data i.e. location</li>
+      </ol>
+      <br>
+      <ol><p>Step 3:</p>
+        <li>Go onto the base.html's website that you previously opened through VS Code or file explorer.</li>
+        <li>Admire Gaby's hard work</li>
+        <li>Enter your name in the text box</li>
+        <li>Paste the url you copied from Propetry 24's website into the text box that says "Link"</li>
+        <li>Press submit</li>
+        <li>Watch the scrapping commense and enjoy!</li>
+      </ol>
+    </div>
     <div class = "center">
-    <h1>A Property 24 Web Scraper!</h1>
     <a
       href="https://www.property24.com/to-rent?gad_source=1&gclid=CjwKCAjwvKi4BhABEiwAH2gcw-ahW4yLv_3qZ9NfQYEKfuyz9l1n7u2FrdUn7-bs2XdbkN0MVeShoxoCAr4QAvD_BwE"
       target="”_blank”"
@@ -65,13 +78,6 @@
     </form>
     </div>
     <script>
-    // window.addEventListener('pageshow', function(event) {
-    //     if (event.persisted) {
-    //         fetch('/clear-json', {
-    //             method: 'POST'
-    //         });
-    //     }
-    // });
       const form = document.getElementById('form');
       const firstName = document.getElementById('name');
       const p24_link = document.getElementById('p24_link');
@@ -111,5 +117,8 @@
             });
           });
     </script>
+    <footer>
+      <a href="www.linktr.ee/tiafu" style="color: white;">View my portfolio</a>
+    </footer>
   </body>
 </html>

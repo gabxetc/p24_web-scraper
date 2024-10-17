@@ -5,9 +5,8 @@
 header {
     background-color: #333; /* Change this color as needed */
     color: white;
-    padding: 20px;
+    padding: 50px;
     text-align: center;
-    width: 100%;
 }
 footer {
     position: fixed;
@@ -20,62 +19,45 @@ footer {
     padding: 50px;
 }
 
-/* These are the styles for the text */
-.p24_info {
-    text-align: center;
-    margin: 50px;
+.center {
+  padding: 100px;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  text-align: justify;
 }
 
-.row {
-    margin-top: 30px;
-    padding: 30px;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    display: flex;
-    
+img {
+  width: 150px;
+  border-radius: 10px;
+  float: left;
+  margin-right: 20px;
+  margin-top: 20px;
 }
 
-.p24_img {
-    padding-left: 100px;
+.greeting {
+  text-align: center;
 }
 
-.p24_questions {
-
+#dataDisplay {
+  padding: 20px;
+  float: left;
 }
-
-
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-h1 {
+  /* h1 {
     padding-bottom: 20px;
   }
-img {
-    width: 150px;
-    border-radius: 10px;
-    float: left;
-    margin-right: 20px;
-    margin-top: 20px;
+
+  .username {
+    font-weight: bold;
+  }
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px
   }
 .username {
     font-weight: bold;
@@ -86,4 +68,4 @@ img {
   }
 .link {
     font-weight: bold;
-  }
+  } */

@@ -45,7 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
   
           const dateScrapedElement = document.createElement("p");
           dateScrapedElement.textContent = "Date Scraped: " + property.dateScraped;
-  
+          
+          const breakElement = document.createElement("br");
+
           // Append all elements to the propertyDiv
           // propertyDiv.appendChild(imageElement);
           propertyDiv.appendChild(linkElement);
@@ -54,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
           propertyDiv.appendChild(priceElement);
           propertyDiv.appendChild(locationElement);
           propertyDiv.appendChild(dateScrapedElement);
+          propertyDiv.appendChild(breakElement);
   
           // Append propertyDiv to the dataDisplay
           dataDisplay.appendChild(propertyDiv);

@@ -107,16 +107,6 @@ axios(url) // Chaining: Returns a promise THEN we get the reponse of whatevers c
     
             // Shut down the server after a specified delay if the write counter reaches maxWrites
             if (writeCounter >= maxWrites) {
-
-                // app.post('/clear-json', (req, res) => {
-                //     fs.writeFile('html/properties.json', JSON.stringify({}), (err) => {
-                //         if (err) {
-                //             return res.status(500).send('Error clearing JSON file');
-                //         }
-                //         res.send('JSON file cleared');
-                //     });
-                // });
-
                 console.log('Max writes reached. Shutting down server after delay...');
                 setTimeout(() => {
                     server.close(() => {

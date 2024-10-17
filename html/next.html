@@ -4,22 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>P24 Web Scraper Results</title>
-    <style>
-      .name {
-        font-weight: bold;
-      }
-      .link {
-        font-weight: bold;
-      }
-    </style>
+    <link rel="stylesheet" href="/css/stylesheet.css">
   </head>
   <body>
-    <h1>Data from web scraper</h1>
-    <p>
-      Hello <span class="name" id="name"></span>! These are the results
-      from your webscrape.
-    </p>
-    <p>This is the link you used: <span class="link" id="p24_link"></span></p>
+    <header>
+      <h1>Welcome to my page!</h1>
+    </header>
+    <br>
+    <div class="greeting">
+      <h1>Data from web scraper</h1>
+      <p>
+        Hello <span class="name" id="name"></span>! These are the results
+        from your webscrape.
+      </p>
+      <p>This is the link you used: <span class="link" id="p24_link"></span></p>
+    </div>
+    <br>
     <hr>
     <div id="dataDisplay">
       <!-- JSON data will be displayed here -->
@@ -32,5 +32,8 @@
       document.getElementById("p24_link").textContent = p24Link;
     </script>
     <script src="html/javascript/script.js"></script>
+    <!-- <footer>
+      <a href="www.linktr.ee/tiafu" style="color: white;">View my portfolio</a>
+    </footer> -->
   </body>
 </html>
