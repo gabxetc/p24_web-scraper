@@ -57,9 +57,23 @@
       target="”_blank”"
       >Go to the Property 24 website to generate a link</a
     >
+    <br>
     <img src="/images/p24.png" alt="An image of Property 24 logo" />
+    <br>
     <p>1. Insert your name so I know who you are!</p>
     <p>2. Insert a link to begin web scraping</p>
+    <!-- <p>3. Choose how you's like to filter your data. Ascending order, descending order or noraml.</p> -->
+    <!-- <form id="sortForm" action="/sort" method="post">
+      <br>
+      <label for="sort">Sort price by:</label><br>
+      <input type="radio" id="ascending" name="sort" class="sort" value="ascending" required>
+      <label for="ascending">Ascending</label><br>
+      <input type="radio" id="descending" name="sort" class="sort" value="descending" required>
+      <label for="descending">Descending</label><br>
+      <input type="radio" id="normal" name="sort" class="sort" value="normal" required>
+      <label for="normal">Normal</label><br><br>
+      <tr>
+    </form> -->
     <form id="form" action="/scrape" method="post">
       <table>
         <tr>
@@ -71,7 +85,6 @@
           <td>Link:</td>
           <td><input type="text" value="" id="p24_link" name="url" required/></td>
         </tr>
-        <tr>
           <td><input type="submit" value="Submit"></td>
         </tr>
       </table>
@@ -93,7 +106,6 @@
 
         window.location.href = "next.html";
       })
-
       document.getElementById("form").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent form refresh
             
@@ -116,6 +128,27 @@
                 console.error('Error:', error);
             });
           });
+
+      //   document.getElementById("sortForm").addEventListener("submit", function(event) {
+      //     event.preventDefault();
+      //     const sortOption = document.querySelector('input[name="sort"]:checked').value;
+      //   // Send the sort option to the server
+      //   fetch('http://localhost:8000/sort', {
+      //       method: 'POST',
+      //       headers: {
+      //           'Content-Type': 'application/json',
+      //       },
+      //       body: JSON.stringify({ sortValue: sortOption }),
+      //   })
+      //   .then(response => response.json())
+      //   .then(data => {
+      //       console.log('Sorted Data:', data);
+      //   })
+      //   .catch(error => {
+      //       console.error('Error:', error);
+      //   });
+      // });
+      
     </script>
     <footer>
       <a href="www.linktr.ee/tiafu" style="color: white;">View my portfolio</a>
