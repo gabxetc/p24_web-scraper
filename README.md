@@ -1,4 +1,12 @@
 # p24_web-scraper
+Challenges:
+1. How do I make this better: Backend and Frontend (Client friendly)
+2. How do I deploy this online. Must be able to work on a url - Is it mobile friendly
+3. Get better at explaining yourself and your code
+4. When you go inot an interview is selling Gaby
+5. How do I sell Gaby
+6. Which languages do I want to master
+7. Write down your ideas and set down the objectives
 
 This is a coding project tony gave me. It is a property 24 web scraper
 
@@ -40,3 +48,9 @@ I used chat gpt and i also used the folllowing articles:
     - https://dizzpy.medium.com/how-to-connect-html-with-json-using-javascript-a-beginners-guide-25e94306fa0f
     - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
     - https://www.scaler.com/topics/javascript/import-js-file-in-js/
+
+The things I achieved:
+
+1.
+
+The things I didn't achieve:

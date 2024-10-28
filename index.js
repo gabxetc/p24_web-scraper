@@ -8,7 +8,7 @@ const cheerio = require('cheerio'); // allows to extract info from html document
 const express = require('express'); // Handles the server
 const fs = require('fs'); // built in file system that handles reading, writing and updating files
 const cors = require('cors'); // cross origin resource sharing
-const scrapeProperties = require('./scrape');
+const scrapeProperties = require('./javascript/scrape');
 
 let server;
 
